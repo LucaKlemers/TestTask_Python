@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CitationwebsiteConfig(AppConfig):
+class QuoteWebsiteConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'CitationWebsite'
+    name = 'QuoteWebsite'
