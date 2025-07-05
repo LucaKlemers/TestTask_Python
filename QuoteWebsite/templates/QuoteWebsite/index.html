@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Цитаты</title>
+</head>
+
+<body>
+    <div class="header" id="main_header">
+        <h2 class="page_title" id="main_title"><a href="../QuoteWebsite/">Случайная Цитата</a></h1>
+            <button class="menu_button" id="add_quote_button" type="button" onclick="location.href='/QuoteWebsite/add_quote'">Добавить цитату</button>
+            <button class="menu_button" id="add_source_button" type="button" onclick="location.href='/QuoteWebsite/add_source'">Добавить источник</button>
+            <button class="menu_button" id="statistics_button" type="button" onclick="location.href='/QuoteWebsite/statistics'">Статистика</button>
+    </div>
+    <div id="quote_container">
+        <h1 id="quote_content">Цитата будет здесь</h1>
+        <h2 id="quote_source"><a id="source_link">Источник цитаты будет здесь</a></h2>
+        <div id="quote_rating">
+            <div class="vote_container" id="upvote_container">
+                <button id="upvote_button" class="vote_button">Палец вверх будет здесь</button>
+                <p class="vote_count" id="upvote_count">Счётчик будет здесь</p>
+            </div>
+            <p class="vote_count" id="total_vote_count"><strong>Счётчик будет здесь</strong></p>
+            <div class="vote_container" id="downvote_container">
+                <button id="downvote_button" class="vote_button">Палец вниз будет здесь</button>
+                <p class="vote_count" id="downvote_count">Счётчик будет здесь</p>
+            </div>
+        </div>
+    </div>
+    <div id="views">
+        <img src="" id="views_icon"/>
+        <p id="views_counter">Views will be here</p>
+    </div>
+</body>
+
+</html>
