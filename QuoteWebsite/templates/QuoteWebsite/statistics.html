@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Цитаты</title>
+    </head>
+    <body>
+        <div class="header" id="main_header">
+            <h2 class="page_title" id="main_title"><a href="../">Случайная Цитата</a></h1>
+            <a class="menu_button" id="add_quote_button" href='{url "add_quote" %}'>Добавить цитату</a>
+            <a class="menu_button" id="add_source_button"href='{% url "add_source" %}'>Добавить источник</a>
+            <a class="menu_button" id="statistics_button" href='{% url "statistics" %}'>Статистика</a>
+        </div>
+        {% for quote in top_quotes %}
+        <div class="top_quote">
+            <h2 class="top_quote_text">
+                {{ quote.quote_text }}
+            </h2>
+            <h3 class="top_quote_source">
+                <a class="top_quote_source_link" href="{% url 'source_info' source_id=quote.source.id %}">
+                    {{ quote.source.name }}
+                </a>
+            </h3>
+            <p class="top_quote_rating_label">Рейтинг: </p>
+            <p class="top_quote_rating">
+                {{ quote.total_rating }}
+            </p>
+            <p class="top_quote_weight_label">Вес: </p>
+            <p class="top_quote_weight">
+                {{ quote.quote_weight }}
+            </p>
+        </div>
+        {% endfor %}
+    </body>
+</html>

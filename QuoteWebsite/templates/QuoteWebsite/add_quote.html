@@ -8,10 +8,10 @@
 
 <body>
     <div class="header" id="main_header">
-        <h2 class="page_title" id="main_title"><a href="../">Добавление цитаты</a></h1>
-            <button class="menu_button" id="add_quote_button" type="button" onclick="location.href='../add_quote'">Добавить цитату</button>
-            <button class="menu_button" id="add_source_button" type="button" onclick="location.href='../add_source'">Добавить источник</button>
-            <button class="menu_button" id="statistics_button"  type="button" onclick="location.href='../statistics'">Статистика</button>
+        <h2 class="page_title" id="main_title"><a href="../">Случайная Цитата</a></h1>
+            <a class="menu_button" id="add_quote_button" href='{url "add_quote" %}'>Добавить цитату</a>
+            <a class="menu_button" id="add_source_button"href='{% url "add_source" %}'>Добавить источник</a>
+            <a class="menu_button" id="statistics_button" href='{% url "statistics" %}'>Статистика</a>
     </div>
     <div id="add_quote_container" class="form_container">
         <form method="POST" action="{% url 'add_quote' %}">

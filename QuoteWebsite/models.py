@@ -60,7 +60,7 @@ class Quote(models.Model):
     total_rating = models.IntegerField(default=0, editable=False, null=True)
     
     def save(self, *args, **kwargs): 
-        other_quotes = Quote.objects.filter(source=self.source).exclude(pk=self.pk).order_by("quote_rating", "quote_weight")
+        other_quotes = Quote.objects.filter(source=self.source).exclude(pk=self.pk).order_by("total_rating", "quote_weight")
         if len(other_quotes) >= 3:
             other_quotes.first().delete()
         self.total_rating = self.positive_rating - self.negative_rating  # Update the total rating after rating changes
@@ -97,4 +97,5 @@ class AddQuoteForm(ModelForm): # Form for adding quotes
             "source": "Источник цитаты (книга, фильм и т.п.)",
         }
 class PageViews(models.Model):
-    views = models.PositiveIntegerField()
+    name = models.CharField(default="views")
+    views = models.PositiveIntegerField(default=0)

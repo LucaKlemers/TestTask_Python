@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <title>Цитаты</title>
+    </head>
+    <body>
+        <div class="header" id="main_header">
+            <h2 class="page_title" id="main_title"><a href="../">Случайная Цитата</a></h1>
+            <a class="menu_button" id="add_quote_button" href='{url "add_quote" %}'>Добавить цитату</a>
+            <a class="menu_button" id="add_source_button"href='{% url "add_source" %}'>Добавить источник</a>
+            <a class="menu_button" id="statistics_button" href='{% url "statistics" %}'>Статистика</a>
+        </div>
+        <div id="source_info_container">
+            <h2 id="source_name">{{ quote_source.name }}</h2>
+            <p id="source_author_label">Автор: </p>
+            <h3 id="source_author">{{ quote_source.author }}</h3>
+            <p id="source_year_label">Год публикации:</p>
+            <p id="source_year">{{ quote_source.publishment_date }}</p> 
+            {% if quote_source.published_AC == True %}
+            <p id="published_AC">н.э.</p>
+            {% else %}
+            <p id="published_AC">до н.э.</p>
+            {% endif %}
+        </div>
+        <div id="source_quote_container">
+            {% for quote in source_quotes %}
+            <div class="source_quote">
+                <h2 class="source_quote_text">
+                    {{ quote.quote_text }}
+                </h2>
+                <p class="source_quote_rating_label">Рейтинг: </p>
+                <p class="source_quote_rating">
+                    {{ quote.total_rating }}
+                </p>
+                <p class="source_quote_weight_label">Вес: </p>
+                <p class="source_quote_weight">
+                    {{ quote.quote_weight }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
