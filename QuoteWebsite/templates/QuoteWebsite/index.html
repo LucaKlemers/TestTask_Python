@@ -9,7 +9,7 @@
 <body>
     <div class="header" id="main_header">
         <h2 class="page_title" id="main_title"><a href="../QuoteWebsite/">Случайная Цитата</a></h1>
-            <a class="menu_button" id="add_quote_button" href='{url "add_quote" %}'>Добавить цитату</a>
+            <a class="menu_button" id="add_quote_button" href='{% url "add_quote" %}'>Добавить цитату</a>
             <a class="menu_button" id="add_source_button"href='{% url "add_source" %}'>Добавить источник</a>
             <a class="menu_button" id="statistics_button" href='{% url "statistics" %}'>Статистика</a>
     </div>
@@ -18,13 +18,19 @@
         <h2 id="quote_source"><a id="source_link" href="{% url 'source_info' source_id=selected_quote.source.id %}">{{ selected_quote.source.name }}</a></h2>
         <div id="quote_rating">
             <div class="vote_container" id="upvote_container">
-                <button id="upvote_button" class="vote_button">Палец вверх будет здесь</button>
-                <p class="vote_count" id="upvote_count">{{ selected_quote.positive_rating }}</p>
+                <form method="post" action = "{% url 'index' %}" class="vote_form" id="upvote_form">
+                    {% csrf_token %}
+                    <input type="hidden" name="vote" value="upvote">
+                    <button id="upvote_button" class="vote_button" type="submit">{{ selected_quote.positive_rating }}</button>
+                </form>
             </div>
             <p class="vote_count" id="total_vote_count"><strong>{{ selected_quote.total_rating }}</strong></p>
             <div class="vote_container" id="downvote_container">
-                <button id="downvote_button" class="vote_button">Палец вниз будет здесь</button>
-                <p class="vote_count" id="downvote_count">{{ selected_quote.negative_rating }}</p>
+                <form method="post" action = "{% url 'index' %}" class="vote_form" id="downvote_form">
+                    {% csrf_token %}
+                    <input type="hidden" name="vote" value="downvote">
+                    <button id="downvote_button" class="vote_button" type="submit">{{ selected_quote.negative_rating }}</button>
+                </form>
             </div>
         </div>
     </div>
