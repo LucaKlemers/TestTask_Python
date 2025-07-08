@@ -4,25 +4,28 @@
 <head>
     <meta charset="utf-8" />
     <title>Цитаты</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'QuoteWebsite/style.css' %}" />
 </head>
 
 <body>
-    <div class="header" id="main_header">
-        <h2 class="page_title" id="main_title"><a href="../">Случайная Цитата</a></h1>
-            <a class="menu_button" id="add_quote_button" href='{% url "add_quote" %}'>Добавить цитату</a>
-            <a class="menu_button" id="add_source_button"href='{% url "add_source" %}'>Добавить источник</a>
-            <a class="menu_button" id="statistics_button" href='{% url "statistics" %}'>Статистика</a>
+    <div class="header">
+        <a class="page_title" href="{% url 'index' %}">Случайная Цитата</a>
+        <a class="menu_button" id="add_quote_button" href='{% url "add_quote" %}'>Добавить цитату</a>
+        <a class="menu_button" id="add_source_button"href='{% url "add_source" %}'>Добавить источник</a>
+        <a class="menu_button" id="statistics_button" href='{% url "statistics" %}'>Статистика</a>
     </div>
     <div id="add_source_container" class="form_container">
         <form method="POST" action="{% url 'add_source' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Добавить источник">
+            <div class="form_divider"></div>
+            <input type="submit" value="Добавить источник" class="form_submit">
         </form>
         {% if success %}
         <div class="success">
             {{ success }}
         </div>
-    {% endif %}
+        {% endif %}
     </div>
 </body>

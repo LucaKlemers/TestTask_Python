@@ -4,39 +4,41 @@
 <head>
     <meta charset="utf-8" />
     <title>Цитаты</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'QuoteWebsite/style.css' %}" />
 </head>
 
 <body>
-    <div class="header" id="main_header">
-        <h2 class="page_title" id="main_title"><a href="../QuoteWebsite/">Случайная Цитата</a></h1>
-            <a class="menu_button" id="add_quote_button" href='{% url "add_quote" %}'>Добавить цитату</a>
-            <a class="menu_button" id="add_source_button"href='{% url "add_source" %}'>Добавить источник</a>
-            <a class="menu_button" id="statistics_button" href='{% url "statistics" %}'>Статистика</a>
+    <div class="header">
+        <a class="page_title" href="{% url 'index' %}">Случайная Цитата</a>
+        <a class="menu_button" id="add_quote_button" href='{% url "add_quote" %}'>Добавить цитату</a>
+        <a class="menu_button" id="add_source_button" href='{% url "add_source" %}'>Добавить источник</a>
+        <a class="menu_button" id="statistics_button" href='{% url "statistics" %}'>Статистика</a>
     </div>
     <div id="quote_container">
         <h1 id="quote_content">{{ selected_quote.quote_text }}</h1>
         <h2 id="quote_source"><a id="source_link" href="{% url 'source_info' source_id=selected_quote.source.id %}">{{ selected_quote.source.name }}</a></h2>
         <div id="quote_rating">
             <div class="vote_container" id="upvote_container">
-                <form method="post" action = "{% url 'index' %}" class="vote_form" id="upvote_form">
+                <form method="post" action="{% url 'index' %}" class="vote_form" id="upvote_form">
                     {% csrf_token %}
                     <input type="hidden" name="vote" value="upvote">
-                    <button id="upvote_button" class="vote_button" type="submit">{{ selected_quote.positive_rating }}</button>
+                    <button id="upvote_button" class="vote_button" type="submit" style="width:7%;{% if vote_status == 'upvote' %}background-color:#90ee90;{% endif %}">
+                        ↑{{ selected_quote.positive_rating }}</button>
                 </form>
             </div>
             <p class="vote_count" id="total_vote_count"><strong>{{ selected_quote.total_rating }}</strong></p>
             <div class="vote_container" id="downvote_container">
-                <form method="post" action = "{% url 'index' %}" class="vote_form" id="downvote_form">
+                <form method="post" action="{% url 'index' %}" class="vote_form" id="downvote_form">
                     {% csrf_token %}
                     <input type="hidden" name="vote" value="downvote">
-                    <button id="downvote_button" class="vote_button" type="submit">{{ selected_quote.negative_rating }}</button>
+                    <button id="downvote_button" class="vote_button" type="submit" style="width:7%;{% if vote_status == 'downvote' %}background-color:#ff7f7f;{% endif %}">↓{{ selected_quote.negative_rating }}</button>
                 </form>
             </div>
         </div>
     </div>
     <div id="views">
-        <img src="" id="views_icon"/>
-        <p id="views_counter">{{ views }}</p>
+        <p id="views_counter">Просмотров: {{ views }}</p>
     </div>
 </body>
 

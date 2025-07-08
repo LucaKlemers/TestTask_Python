@@ -22,6 +22,7 @@ def index(request):  # Main page
         return selected_quote[0]
 
     page_views = PageViews.objects.get_or_create(name="views")[0]
+    
     if request.POST.get("vote") == "upvote" or request.POST.get("vote") == "downvote":
         selected_quote_id = request.COOKIES.get("quote_cookie")
         selected_quote = (
@@ -66,14 +67,14 @@ def index(request):  # Main page
         selected_quote = (
             Quote.objects.get(pk=selected_quote_id) if selected_quote_id else None
         )
-        context = {"selected_quote": selected_quote, "views": page_views.views}
+        context = {"selected_quote": selected_quote, "views": page_views.views, "vote_status": selected_quote.check_vote(request),}
         response = render(request, "QuoteWebsite/index.html", context)
         return response
     else:
         page_views.views += 1
         page_views.save()
         selected_quote = random_quote(0.25)
-        context = {"selected_quote": selected_quote, "views": page_views.views}
+        context = {"selected_quote": selected_quote, "views": page_views.views, "vote_status": selected_quote.check_vote(request),}
         response = render(request, "QuoteWebsite/index.html", context)
         response.delete_cookie("quote_cookie")
         response.set_cookie(

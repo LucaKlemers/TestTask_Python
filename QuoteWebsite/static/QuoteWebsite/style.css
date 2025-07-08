@@ -1,0 +1,75 @@
+.header{
+    width: 100%;
+    height: 5vw;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: auto;
+}
+* {font-family: 'Courier New', Courier, monospace}
+a:hover {color: gray;}
+a{color:black;}
+.menu_button, .page_title  {color: white; font-size: larger;}
+#quote_container, #source_info_container, .form_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+#quote_content{
+    text-align: center;
+}
+#quote_container {
+    width: 60%;
+    margin: 0 20% 0 20%;
+}
+#quote_rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 20%;
+}
+#views{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top_quote{
+    width: 50%;
+    margin: 5% 25% 5% 25%;
+}
+
+form {
+    display: flex;
+    justify-content: space-around;
+    align-items: left;
+    width: 50%;
+    flex-direction: column;
+    margin-top: 3%;
+    margin-bottom: 1%;
+}
+.form_divider {
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+.vote_button{
+    width: 10%;
+    margin-right: 1%;
+}
+.upvoted {
+    background-color: green;
+    color: white;
+}
+.source_quote {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 50%;
+    margin: 5% 25% 5% 25%;
+}
+#add_source_form_button {
+    margin-bottom: 5%;
+}

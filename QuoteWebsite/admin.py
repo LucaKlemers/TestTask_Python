@@ -5,3 +5,6 @@ from .models import QuoteSource
 from .models import Quote
 admin.site.register(QuoteSource)
 admin.site.register(Quote)
+
+class QuoteAdmin(admin.ModelAdmin):
+    list_editable = ['quote_weight']
